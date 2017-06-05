@@ -11,6 +11,7 @@ import { Provider } from 'react-redux';
 import { reducers } from './ducks';
 
 import { LoginPage } from './components/login';
+import { Navbar } from './components/mainpage';
 
 const store = createStore(
     reducers,
@@ -19,10 +20,13 @@ const store = createStore(
 ReactDOM.render(
     <Provider store = {store} >
         <Router>
-            <Switch>
-                <Route exact path="/" component={App}/>
-                <Route path="/login" component={LoginPage} />
-            </Switch>
+            <div>
+                <Navbar />
+                <Switch>
+                    <Route exact path="/" component={App}/>
+                    <Route path="/login" component={LoginPage} />
+                </Switch>
+            </div>
         </Router>
     </Provider>
     , document.getElementById('root'));
