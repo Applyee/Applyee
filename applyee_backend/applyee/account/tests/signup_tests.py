@@ -5,8 +5,7 @@ from account.models import User
 @pytest.mark.django_db
 def test_create_user_model():
     User.objects.create(username='test email',
-                        password='test password',
-                        phone_number='01012341234')
+                        password='test password')
     User.objects.get(username='test email')
 
 
@@ -26,8 +25,7 @@ def test_return_400_response_when_users_get_request(client):
 def test_sign_up_POST_request(client):
     signup_data = {
         'username': 'test@email.com',
-        'password': 'test password',
-        'phone_number': '01012341234',
+        'password': 'test password'
     }
     response = client.post('/users/', signup_data)
 
@@ -38,8 +36,7 @@ def test_sign_up_POST_request(client):
 @pytest.mark.django_db
 def test_sign_up_fail_with_existent_fields(client):
     User.objects.create(username='test@email.com',
-                        password='test password',
-                        phone_number='01012341234')
+                        password='test password')
 
     signup_data = {
         'username': 'test@email.com',
@@ -61,25 +58,5 @@ def test_sign_up_fail_with_empty_fields(client):
 
     assert response.status_code == 400
     assert 'This field is required.' in response.data['username']
-    assert 'This field is required.' in response.data['phone_number']
     assert 'This field is required.' in response.data['password']
 
-
-@pytest.mark.django_db
-def test_sign_up_phone_number_field_validation(client):
-    signup_data = {
-        'username': 'test@email.com',
-        'password': 'test password',
-        'phone_number': '010123424',
-    }
-
-    response = client.post('/users/', signup_data)
-
-    assert response.status_code == 400
-    assert 'Phone length has to be 11 & Only number' in response.data['phone_number']
-
-    signup_data['phone_number'] = '0101234123a'
-    response = client.post('/users/', signup_data)
-
-    assert response.status_code == 400
-    assert 'Phone length has to be 11 & Only number' in response.data['phone_number']
