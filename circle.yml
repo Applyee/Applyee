@@ -8,5 +8,5 @@ dependencies:
       
 test:
   override:
-    - pytest applyee_backend
+    - pytest ./applyee_backend
 
