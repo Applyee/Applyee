@@ -1,9 +1,13 @@
+import axios from 'axios';
+import { call, put, takeEvery, fork } from 'redux-saga/effects';
+import { DEFAULT_REQUEST_URL } from '../constants'
+// actions
 const LOGIN_REQUEST = 'LOGIN_REQUEST';
 const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 const LOGIN_FAIL = 'LOGIN_FAIL';
 const LOGOUT = 'LOGOUT';
 
-// action creator
+// action creators
 export function loginRequest(username, password){
     return {
         type : LOGIN_REQUEST,
@@ -18,7 +22,7 @@ export function logout(){
     };
 }
 
-export function loginSuccess(payload, user_info, participated_dates){
+export function loginSuccess(payload){
     localStorage.setItem('applyee_token', payload.data.token);
     return {
         type : LOGIN_SUCCESS,
@@ -26,7 +30,7 @@ export function loginSuccess(payload, user_info, participated_dates){
     };
 }
 
-export function loginFailure(payload){
+export function loginFail(payload){
     return {
         type : LOGIN_FAIL,
         payload
@@ -43,7 +47,7 @@ const initialState = {
     loggedIn : localStorage.hasOwnProperty('token') ? true : false
 };
 
-export default function login(state = initialState, action){
+export default function loginReducer(state = initialState, action){
     switch(action.type){
         case LOGOUT:
             return {
@@ -74,4 +78,35 @@ export default function login(state = initialState, action){
         default:
             return state;
     }
+}
+
+// axios
+export function loginRequestToServer(username, password){
+    return axios.post(DEFAULT_REQUEST_URL + '/login/', {
+        "username": username,
+        "password" : password
+    }).catch((e) => {
+        console.log(e);
+    });
+}
+
+// saga
+function* watchLoginRequest(action){
+    try{
+        const [response] = yield [
+            call(loginRequestToServer, action.username, action.password)
+        ];
+        yield put(loginSuccess(response));
+    }catch(e){
+        yield put(loginFail(e));
+    }
+
+}
+
+function* watchLogin(){
+    yield takeEvery(LOGIN_REQUEST, watchLoginRequest);
+}
+
+export function* loginSaga(){
+    yield fork(watchLogin);
 }
