@@ -1,0 +1,7 @@
+let DEFAULT_REQUEST_URL = "";
+
+const LOCAL_REQUEST_URL = "http://localhost:8000";
+
+DEFAULT_REQUEST_URL = LOCAL_REQUEST_URL;
+
+export default DEFAULT_REQUEST_URL;
