@@ -43,6 +43,11 @@ INSTALLED_APPS = [
     'account',
 ]
 
+# Cors middleware settings
+CORS_ORIGIN_WHITELIST = (
+    'localhost:3000',
+)
+
 REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         # 'rest_framework.permissions.IsAdminUser',
