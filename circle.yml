@@ -1,12 +1,21 @@
 machine:
-  python:
-    version: 3.5.2
-
+    python:
+        version: 3.5.2
+    node:
+        version: 5.11.0
 dependencies:
-  pre:
-    - pip install -r ./applyee_backend/requirements.txt
-      
-test:
-  override:
-    - pytest ./applyee_backend
+    cache_directories:
+        - "./apply_frontend/node_module"
+    pre:
+        - pip install -r ./applyee_backend/requirements.txt
+        - ./applyee_frontend/npm_install.sh
+    post:
+        - ./applyee_backend/prepared_server.sh:
+            background: true
+        - ./applyee_frontend/prepared_server.sh:
+            background: true
 
+test:
+    override:
+        - pytest ./applyee_backend
+        - ./applyee_frontend/run_tests.sh
