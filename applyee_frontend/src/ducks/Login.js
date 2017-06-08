@@ -44,7 +44,7 @@ const initialState = {
     password : 'initial value',
     fetching : false,
     payload : undefined,
-    loggedIn : localStorage.hasOwnProperty('token') ? true : false
+    loggedIn : localStorage.hasOwnProperty('applyee_token') ? true : false
 };
 
 export default function loginReducer(state = initialState, action){
