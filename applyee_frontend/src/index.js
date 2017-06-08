@@ -22,6 +22,7 @@ import createSagaMiddleware from 'redux-saga';
 import { reducers, rootSaga } from './ducks';
 
 import { LoginPage } from './components/login';
+import { SignUpPage } from './components/signup';
 import { Navbar } from './components/mainpage';
 
 const sagaMiddleware = createSagaMiddleware();
@@ -42,6 +43,7 @@ ReactDOM.render(
                 <Switch>
                     <Route exact path="/" component={App}/>
                     <Route path="/login" component={LoginPage} />
+                    <Route path="/signup" component={SignUpPage} />
                 </Switch>
             </div>
         </Router>
