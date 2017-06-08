@@ -66,15 +66,41 @@ class LoginPage extends Component {
         }
     }
     render() {
+        const mainTitleStyle = {
+            fontSize: '31px',
+            color: '#9b9b9b',
+            marginTop: '90px',
+            textAlign: 'center',
+            marginBottom: '0px',
+        }
+        const subTitleStyle = {
+            color: '#9b9b9b',
+            fontSize: '25px',
+            marginTop: '0px',
+            marginBottom: '86px',
+            textAlign: 'center'
+        }
         return (
             <Container text>
                 { this.props.loggedIn && <Redirect to={this._handleRedirect()}/> }
-                <Header style={{marginTop: '30px'}}>로그인</Header>
+                <p style={mainTitleStyle}>로그인</p>
+                <p style={subTitleStyle}>Log in</p>
 
                 <LoginForm onSubmit = {this._handleLoginSubmit} submitting={this.props.fetching} />
-                <Button onClick={() => {this.props.history.push('/signup')}} content="회원가입" fluid />
 
-                <Container textAlign="right">아이디 / 비밀번호 찾기</Container>
+                <Container style={{margin:'30px'}} text textAlign="center">
+                        <Button
+                            style={{backgroundColor: '#ffffff', color:'#9b9b9b'}}>
+                            비밀번호 찾기
+                        </Button>
+                        |
+                        <Button
+                            onClick={() => {this.props.history.push('/signup')}}
+                            style={{backgroundColor: '#ffffff', color:'#9b9b9b'}}>
+                            회원가입
+                        </Button>
+                </Container>
+
                 <Modal
                     open={this.state.modalOpen}
                     onClose={() => this.setState({modalOpen: false})} >
