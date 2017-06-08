@@ -24,7 +24,7 @@ const MainPage = ({history}) => (
         <Button
             color='blue' inverted
             style={{width:'250px', marginBottom: '80px'}}
-            onClick={()=>history.push('/login')}>
+            onClick={()=>history.push('/application-list')}>
             무료로 사용하기
         </Button>
     </Container>
