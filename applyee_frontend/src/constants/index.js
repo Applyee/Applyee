@@ -5,7 +5,9 @@
  */
 
 import DEFAULT_REQUEST_URL from './DefaultUrl';
+import {APPLICATION_CARD_SIZE} from './Card';
 
 export {
-    DEFAULT_REQUEST_URL
+    DEFAULT_REQUEST_URL,
+    APPLICATION_CARD_SIZE
 };
