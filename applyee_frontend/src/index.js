@@ -22,13 +22,9 @@ import createSagaMiddleware from 'redux-saga';
 import { reducers, rootSaga } from './ducks';
 
 import { LoginPage } from './components/login';
-<<<<<<< HEAD
 import { SignUpPage } from './components/signup';
-import { Navbar } from './components/mainpage';
-=======
 import { Navbar, Footer } from './components/mainpage';
 import ApplicationListPage from './containers/application_list/ApplicationListPage';
->>>>>>> c50bd4bf634dcfc5040322a44c99b24c4f2eb4be
 
 const sagaMiddleware = createSagaMiddleware();
 const middleware = sagaMiddleware;
@@ -48,11 +44,8 @@ ReactDOM.render(
                 <Switch>
                     <Route exact path="/" component={App}/>
                     <Route path="/login" component={LoginPage} />
-<<<<<<< HEAD
                     <Route path="/signup" component={SignUpPage} />
-=======
                     <Route path="/application-list" component={ApplicationListPage} />
->>>>>>> c50bd4bf634dcfc5040322a44c99b24c4f2eb4be
                 </Switch>
                 <Footer />
             </div>
