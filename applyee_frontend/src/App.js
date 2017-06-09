@@ -1,10 +1,9 @@
 import React from 'react';
 
-import {Container} from 'semantic-ui-react';
+import {MainPage} from './components/mainpage';
 
 const App = () => (
-    <Container text>
-    </Container>
+    <MainPage />
 )
 
 export default App;

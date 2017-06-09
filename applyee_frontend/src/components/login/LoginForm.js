@@ -14,7 +14,7 @@ const spanErrorStyle ={
 
 const renderField = ({ input, label, type, htmlFor, labelText, meta: { touched, error, warning } }) => (
     <div style={{marginTop: "20px"}}>
-        <label htmlFor={htmlFor}>{labelText}</label>
+        <label style={{color:'#9b9b9b'}} htmlFor={htmlFor}>{labelText}</label>
         <div>
         <input {...input} placeholder={label} type={type}/>
             {touched && ((error && <span style={spanErrorStyle}>{error}</span>) || (warning && <span>{warning}</span>))}
@@ -27,7 +27,13 @@ const LoginForm = ({handleSubmit, submitting}) => {
         <Form onSubmit={handleSubmit}>
             <Field name="username" component={renderField} htmlFor="username" labelText="이메일" type="text" validate={[emailRequired, emailCorrectForm]}/>
             <Field name="password" component={renderField} htmlFor="password" labelText="비밀번호" type="password" validate={passwordRequired}/>
-            <Button type="submit" disabled={submitting} fluid>로그인</Button>
+            <Button
+                style={{backgroundColor: "#35c1d6", marginTop: '62px', marginBottom: '20px'}} 
+                color='blue'
+                type="submit"
+                disabled={submitting} fluid>
+                    로그인
+            </Button>
         </Form>
     );
 }

@@ -1,23 +1,45 @@
 import React, { Component, PropTypes } from 'react';
 import {Link} from 'react-router-dom';
+import {Container, Image, Button} from 'semantic-ui-react';
+import {withRouter} from 'react-router-dom';
+import {connect} from 'react-redux';
+import {logout} from '../../ducks/Login';
 
-const propTypes = {
-};
-const defaultProps = {
+const ButtonOnNavbar = ({handleClick,children}) => (
+    <Button
+        onClick={handleClick}
+        style={{
+            backgroundColor: '#ffffff',
+            color: '#9b9b9b',
+            width: '115px',
+            height: '60px'
+        }}>
+        {children}
+    </Button>
+)
+const Navbar = ({history, loggedIn, logout}) => (
+    <Container
+        textAlign="right"
+        style={{marginTop: '60px'}}
+        >
+        {
+            (loggedIn) ?
+                (<ButtonOnNavbar
+                    handleClick={logout}>
+                    로그아웃
+                </ButtonOnNavbar>) :
+                (<ButtonOnNavbar
+                    handleClick={() => history.push('/login')}>
+                    로그인
+                </ButtonOnNavbar>)
+        }
+    </Container>
+)
+
+const mapStateToProps = (state) => {
+    return {
+        loggedIn : state.login.loggedIn
+    }
 };
 
-class Navbar extends Component {
-    constructor(props) {
-        super(props);
-    }
-    render() {
-        return(
-            <div>
-                <Link to="/login">로그인</Link>
-            </div>
-        );
-    }
-}
-Navbar.propTypes = propTypes;
-Navbar.defaultProps = defaultProps;
-export default Navbar;
+export default withRouter(connect(mapStateToProps, {logout})(Navbar));

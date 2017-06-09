@@ -4,10 +4,11 @@ import { DEFAULT_REQUEST_URL } from '../constants'
 // actions
 const SIGN_UP_REQUEST = 'SIGN_UP_REQUEST';
 const SIGN_UP_SUCCESS = 'SIGN_UP_SUCCESS';
-const SIGN_UP_FAIL = 'SING_UP_FAIL';
+const SIGN_UP_FAIL = 'SIGN_UP_FAIL';
 
 // action creators
 export function signUpRequest(username, password){
+    console.log("signUpRequest");
     return {
         type : SIGN_UP_REQUEST,
         username,
@@ -16,6 +17,8 @@ export function signUpRequest(username, password){
 }
 
 export function signUpSuccess(payload){
+    console.log("signUpSuccess : " + payload);
+    console.log(payload);
     return {
         type : SIGN_UP_SUCCESS,
         payload
@@ -23,6 +26,8 @@ export function signUpSuccess(payload){
 }
 
 export function signUpFail(payload){
+    console.log("signUpFail : " + payload);
+    console.log(payload);
     return {
         type : SIGN_UP_FAIL,
         payload
@@ -69,16 +74,14 @@ export function signUpRequestToServer(username, password){
         "username": username,
         "password" : password
     }).catch((e) => {
-        console.log(e);
+        throw e;
     });
 }
 
 // saga
 function* watchSignUpRequest(action){
     try{
-        const [response] = yield [
-            call(signUpRequestToServer, action.username, action.password)
-        ];
+        const response = yield call(signUpRequestToServer, action.username, action.password);
         yield put(signUpSuccess(response));
     }catch(e){
         yield put(signUpFail(e));
