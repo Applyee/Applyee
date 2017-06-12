@@ -1,7 +1,9 @@
 import React, { Component, PropTypes } from 'react';
 import {Card, Icon, Container} from 'semantic-ui-react';
 import ApplicationCard from '../../components/application/ApplicationCard';
+
 import {APPLICATION_CARD_SIZE} from '../../constants';
+import {withRouter} from 'react-router-dom';
 
 const propTypes = {
 };
@@ -17,12 +19,11 @@ class ApplicationListPage extends Component {
         return(
             <Container textAlign="center" style={{marginTop: '106px'}}>
                 <Card.Group>
-                    <Card style={cardStyle} link>
+                    <Card onClick={() => this.props.history.push('application-making')} style={cardStyle} link>
                         <Icon
                             style={{color:'#ffffff', marginLeft:'33%',marginTop:'33%'}}
                             size='massive'
                             name='plus'
-                            fixed
                             />
                         <p style={{color:'#ffffff', fontSize: '20px', marginTop: '20%'}}>지원서 만들기</p>
                     </Card>
@@ -38,4 +39,4 @@ class ApplicationListPage extends Component {
 }
 ApplicationListPage.propTypes = propTypes;
 ApplicationListPage.defaultProps = defaultProps;
-export default ApplicationListPage;
+export default withRouter(ApplicationListPage);

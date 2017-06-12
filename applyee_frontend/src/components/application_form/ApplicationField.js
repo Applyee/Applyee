@@ -1,10 +1,11 @@
 import React from 'react';
 import {Field} from 'redux-form';
 
-const renderField = ({ type, htmlFor, placeholder, labelText, size, meta: { touched } }) => (
-    <div style={{marginTop: "20px"}}>
+const renderField = ({ input, type, htmlFor, placeholder, labelText, size, meta: { touched } }) => (
+    <div>
         <div className='inputgroup'>
             <input
+                {...input}
                 placeholder={placeholder}
                 className='applicationinput'
                 style={{width: '100%', fontSize: size, lineHeight: size}}
@@ -14,12 +15,12 @@ const renderField = ({ type, htmlFor, placeholder, labelText, size, meta: { touc
         </div>
     </div>
 )
-const ApplicationField = ({tag, type, labelText, placeholder, size}) => (
+const ApplicationField = ({name, type, labelText, placeholder, size}) => (
     <Field
-        name={tag}
+        name={name}
         placeholder={placeholder}
         component={renderField}
-        htmlFor={tag}
+        htmlFor={name}
         type={type}
         size={size}
     />
