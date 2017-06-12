@@ -1,3 +1,5 @@
+import os
+
 from rest_framework import status
 from rest_framework import viewsets
 from rest_framework.response import Response
@@ -25,37 +27,35 @@ class UserViewSet(viewsets.ModelViewSet):
 
 
 def send_mail_with_contents(email, title, contents):
-    with open('mail_setting.json') as data_file:
-        mail_setting = json.load(data_file)
 
-        email_regex = re.compile("(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)")
-        match_result = email_regex.match(email)
-        if match_result is False:
-            return Response({"message": "Invalid Mail Form"}, status=status.HTTP_400_BAD_REQUEST)
+    email_regex = re.compile("(^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)")
+    match_result = email_regex.match(email)
+    if match_result is False:
+        return Response({"message": "Invalid Mail Form"}, status=status.HTTP_400_BAD_REQUEST)
 
-        from_addr = mail_setting['email']
-        to_addr = email
+    from_addr = os.environ['APPLYEE_MAIL_ADDRESS']
+    to_addr = email
 
-        server = smtplib.SMTP('smtp.gmail.com:587')
-        server.starttls()
+    server = smtplib.SMTP('smtp.gmail.com:587')
+    server.starttls()
 
-        server.login(from_addr, mail_setting['password'])
+    server.login(from_addr, os.environ['APPLYEE_MAIL_PASSWORD'])
 
-        body = MIMEMultipart()
-        body['subject'] = title
-        body['From'] = from_addr
-        body['To'] = to_addr
+    body = MIMEMultipart()
+    body['subject'] = title
+    body['From'] = from_addr
+    body['To'] = to_addr
 
-        msg = MIMEText(contents, 'plain')
-        body.attach(msg)
+    msg = MIMEText(contents, 'plain')
+    body.attach(msg)
 
-        server.sendmail(from_addr=from_addr,
-                        to_addrs=[to_addr],  # list, str 둘 다 가능
-                        msg=body.as_string())
+    server.sendmail(from_addr=from_addr,
+                    to_addrs=[to_addr],  # list, str 둘 다 가능
+                    msg=body.as_string())
 
-        server.quit()
+    server.quit()
 
-        return Response({"message": "Success"})
+    return Response({"message": "Success"})
 
 
 @api_view(['POST'])
