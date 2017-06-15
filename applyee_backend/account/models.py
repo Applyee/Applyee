@@ -21,11 +21,11 @@ class Application(models.Model):
 class Mail(models.Model):
     title = models.CharField(max_length=30)
     content = models.TextField()
-    application = models.ForeignKey('Application', null=False, on_delete=models.CASCADE())
+    application = models.ForeignKey('Application', null=False, on_delete=models.CASCADE)
 
 
 class Applicant(models.Model):
-    application = models.ForeignKey('Application', null=False, on_delete=models.CASCADE())
+    application = models.ForeignKey('Application', null=False, on_delete=models.CASCADE)
     image = models.ImageField()
     file = models.FileField()
     avg_rate = models.IntegerField()
@@ -34,8 +34,8 @@ class Applicant(models.Model):
 
 
 class Comment(models.Model):
-    application = models.ForeignKey('Application', null=False, on_delete=models.CASCADE())
-    user = models.ForeignKey('User', null=False, on_delete=models.CASCADE())
+    application = models.ForeignKey('Application', null=False, on_delete=models.CASCADE)
+    user = models.ForeignKey('User', null=False, on_delete=models.CASCADE)
     comment = models.TextField()
     rate = models.IntegerField()
 
@@ -50,11 +50,10 @@ class Question(models.Model):
     example_answer = models.TextField()
     priority = models.IntegerField()
     type = models.CharField(max_length=1, choices=TYPE_CHOICES)
-    application = models.ForeignKey('Application', null=False, on_delete=models.CASCADE())
+    application = models.ForeignKey('Application', null=False, on_delete=models.CASCADE)
 
 
 class Answer(models.Model):
-    question = models.ForeignKey('Question', null=False, on_delete=models.CASCADE())
-    applicant = models.ForeignKey('Applicant', null=False, on_delete=models.CASCADE())
+    question = models.ForeignKey('Question', null=False, on_delete=models.CASCADE)
+    applicant = models.ForeignKey('Applicant', null=False, on_delete=models.CASCADE)
     answer = models.TextField()
-    
