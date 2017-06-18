@@ -79,3 +79,5 @@ build
 dist
 Contact GitHub API Training Shop Blog About
 
+# Applyee conf file
+mail_setting.json

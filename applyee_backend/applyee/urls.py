@@ -26,6 +26,7 @@ router.register(r'users', views.UserViewSet)
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^login/', obtain_auth_token),
     url(r'^', include(router.urls)),
+    url(r'^login/', obtain_auth_token),
+    url(r'^mail-to-applier/', views.send_email_to_applier, name="send_email_to_applier"),
 ]
