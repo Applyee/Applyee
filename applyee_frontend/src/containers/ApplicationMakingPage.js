@@ -24,7 +24,7 @@ class ApplicationMakingPage extends Component {
     }
     render() {
         return(
-            <Container>
+            <Container textAlign="center">
                 <ApplicationForm onSubmit={this._handleSubmit} initialValues={formInitalValues}/>
             </Container>
         );

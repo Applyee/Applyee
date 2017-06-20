@@ -29,7 +29,7 @@ const ApplicationCard = ({header, statistics, dueDate }) => (
         <Card.Header style={headerStyle}>{header}</Card.Header>
         <a style={statisticsStyle}>{statistics}</a>
         <p style={dueDateStyle}>{dueDate}</p>
-        <Container centered>
+        <Container>
             <ControlledIcon name='pencil'/>
             <ControlledIcon name='trash outline'/>
             <ControlledIcon name='linkify'/>
