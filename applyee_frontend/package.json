@@ -5,6 +5,8 @@
   "dependencies": {
     "axios": "^0.16.2",
     "react": "^15.5.4",
+    "react-addons-update": "^15.5.2",
+    "react-autosize-textarea": "^0.4.4",
     "react-dom": "^15.5.4",
     "react-redux": "^5.0.5",
     "react-router-dom": "^4.1.1",

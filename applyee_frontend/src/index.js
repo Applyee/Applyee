@@ -4,6 +4,9 @@ import ReactDOM from 'react-dom';
 // semantic-ui-css
 import 'semantic-ui-css/semantic.min.css';
 
+// style
+import './style/FormStyle.css';
+
 // App
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
@@ -25,6 +28,7 @@ import { LoginPage } from './components/login';
 import { SignUpPage } from './components/signup';
 import { Navbar, Footer } from './components/mainpage';
 import ApplicationListPage from './containers/application_list/ApplicationListPage';
+import ApplicationMakingPage from './containers/ApplicationMakingPage';
 
 const sagaMiddleware = createSagaMiddleware();
 const middleware = sagaMiddleware;
@@ -46,6 +50,7 @@ ReactDOM.render(
                     <Route path="/login" component={LoginPage} />
                     <Route path="/signup" component={SignUpPage} />
                     <Route path="/application-list" component={ApplicationListPage} />
+                    <Route path="/application-making" component={ApplicationMakingPage} />
                 </Switch>
                 <Footer />
             </div>
