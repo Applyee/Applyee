@@ -15,7 +15,7 @@ const spanErrorStyle ={
 
 const renderField = ({ input, label, type, htmlFor, labelText, ref ,meta: { touched, error, warning } }) => (
     <div style={{marginTop: "20px"}}>
-        <label htmlFor={htmlFor}>{labelText}</label>
+        <label style={{color: '#999999'}} htmlFor={htmlFor}>{labelText}</label>
         <div>
             <input {...input} ref={ref} placeholder={label} type={type}/>
             {touched && ((error && <span style={spanErrorStyle}>{error}</span>) || (warning && <span>{warning}</span>))}
@@ -29,9 +29,10 @@ class SignUpForm extends Component{
     render() {
 
         const buttonStyle = {
-            marginTop: '5px',
+            backgroundColor: "#35c1d6",
+            marginTop: '26px',
+            marginBottom: '20px',
             color: '#FFFFFF',
-            backgroundColor: '#5FA1D7'
         };
 
         return (
@@ -39,7 +40,7 @@ class SignUpForm extends Component{
                 <Field name="username" component={renderField} htmlFor="username" labelText="이메일" type="text" validate={[emailRequired, emailCorrectForm]}/>
                 <Field name="password" component={renderField} htmlFor="password" labelText="비밀번호" type="password" validate={[passwordRequired,]}/>
                 <Field name="password_check" component={renderField} htmlFor="password_check" labelText="비밀번호 확인" type="password" validate={[passwordCheckRequired,]}/>
-                <Form.Button style={buttonStyle} fluid>회원 가입</Form.Button>
+                <Form.Button style={buttonStyle} fluid>시작하기</Form.Button>
             </Form>
         );
     }

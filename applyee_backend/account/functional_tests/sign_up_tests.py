@@ -14,7 +14,7 @@ def test_sign_up(browser):
     browser.find_element_by_xpath("//input[@name='password']").send_keys('1234')
     browser.find_element_by_xpath("//input[@name='password_check']").send_keys('1234')
 
-    browser.find_element_by_xpath("//button[text()='회원 가입']").click()
+    browser.find_element_by_xpath("//button[text()='시작하기']").click()
 
     verfy_modal = WebDriverWait(browser, 15).until(
         EC.presence_of_element_located((By.XPATH, "//div[@class='ui page modals dimmer transition visible active']"))
@@ -29,7 +29,7 @@ def test_sign_up_different_password(browser):
     browser.find_element_by_xpath("//input[@name='password']").send_keys('1234')
     browser.find_element_by_xpath("//input[@name='password_check']").send_keys('1234')
 
-    browser.find_element_by_xpath("//button[text()='회원 가입']").click()
+    browser.find_element_by_xpath("//button[text()='시작하기']").click()
 
     verfy_modal = WebDriverWait(browser, 15).until(
         EC.presence_of_element_located((By.XPATH, "//div[@class='ui page modals dimmer transition visible active']"))

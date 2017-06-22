@@ -70,10 +70,25 @@ class SignUpPage extends Component {
     }
 
     render() {
+        const mainTitleStyle = {
+            fontSize: '31px',
+            color: '#9b9b9b',
+            marginTop: '90px',
+            textAlign: 'center',
+            marginBottom: '0px',
+        }
+        const subTitleStyle = {
+            color: '#9b9b9b',
+            fontSize: '25px',
+            marginTop: '0px',
+            marginBottom: '86px',
+            textAlign: 'center'
+        }
         return (
-            <Container text>
+            <Container text style={{marginBottom: '528px'}}>
                 { this.props.isSucceeded && !this.state.modalOpen && <Redirect to={this._handleRedirect()}/> }
-                <Header style={{marginTop: '30px'}}>회원가입</Header>
+                <p style={mainTitleStyle}>회원가입</p>
+                <p style={subTitleStyle}>Join Us</p>
 
                 <SignUpForm onSubmit = {this._handleSignUpSubmit}/>
 
