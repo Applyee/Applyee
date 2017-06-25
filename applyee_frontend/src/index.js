@@ -29,6 +29,7 @@ import { SignUpPage } from './components/signup';
 import { Navbar, Footer } from './components/mainpage';
 import ApplicationListPage from './containers/application_list/ApplicationListPage';
 import ApplicationMakingPage from './containers/ApplicationMakingPage';
+import ApplicantListPage from './containers/ApplicantListPage';
 
 const sagaMiddleware = createSagaMiddleware();
 const middleware = sagaMiddleware;
@@ -50,6 +51,7 @@ ReactDOM.render(
                     <Route path="/login" component={LoginPage} />
                     <Route path="/signup" component={SignUpPage} />
                     <Route path="/application-list" component={ApplicationListPage} />
+                    <Route path="/applicant-list" component={ApplicantListPage} />
                     <Route path="/application-making" component={ApplicationMakingPage} />
                 </Switch>
                 <Footer />
