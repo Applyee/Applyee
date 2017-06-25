@@ -1,7 +1,8 @@
 import React, { Component, PropTypes } from 'react';
-import {Table, Checkbox, Dropdown, Container, Button} from 'semantic-ui-react';
+import {Table,Card, Checkbox, Dropdown, Container, Button} from 'semantic-ui-react';
 import update from 'react-addons-update';
 import Applicant from './Applicant';
+import Evaluation from './Evaluation';
 
 const propTypes = {
 };
@@ -78,7 +79,15 @@ class ApplicantListPage extends Component {
             })
             for(var i=0;i<this.state.checkedNums.length;i++){
                 if(this.state.checkedNums[i].clicked){
-                    cells.splice(i+1,0,<Table.Row><Table.Cell disabled colSpan='2000'><Applicant /></Table.Cell></Table.Row>);
+                    cells.splice( i+1,0,
+                        <Table.Row>
+                            <Table.Cell style={{backgroundColor:'#4a4a4a'}} colSpan='2000'>
+                                <Card.Group itemsPerRow={2}>
+                                    <Applicant />
+                                    <Evaluation />
+                                </Card.Group>
+                            </Table.Cell>
+                        </Table.Row>);
                 }
             }
             return cells;

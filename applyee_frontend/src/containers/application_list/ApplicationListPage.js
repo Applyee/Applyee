@@ -31,6 +31,7 @@ class ApplicationListPage extends Component {
                         header="어플리 동아리 3기 모집 지원서"
                         statistics="16명 제출"
                         dueDate="마감 D-7"
+                        onClick={() => this.props.history.push("/applicant-list")}
                         />
                 </Card.Group>
             </Container>
